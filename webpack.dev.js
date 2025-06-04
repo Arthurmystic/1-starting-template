@@ -1,42 +1,20 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+const { merge } = require("webpack-merge");
+const common = require("./webpack.common.js");
 
-module.exports = {
+module.exports = merge(common, {
   mode: "development",
-  entry: "./src/index.js", // UPDATE THIS
-  output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true,
-  },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/to-do-list.html", // UPDATE THIS
-    }),
-  ],
 
   devtool: "eval-source-map",
   devServer: {
-    watchFiles: ["./src/to-do-list.html"], // UPDATE THIS
+    watchFiles: ["./src/index.html"], // UPDATE THIS
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.css$/i, // for css and loading images in js (css-loader does this)
-        use: ["style-loader", "css-loader"],
-      },
+  // USE THIS AND COMMENT OUT ABOVE IF THOROUGH (BUT SLOWER) DEBUGGING IS PREF
+  // Use this and comment out above if thorough (but slower) debugging is prefered
+  // to faster and live editing
 
-      {
-        test: /\.html$/i, //for images referenced in html
-        loader: "html-loader",
-      },
-
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i, // for images loading images
-        type: "asset/resource",
-      },
-    ],
-  },
-};
+  //  devtool: 'inline-source-map',
+  //  devServer: {
+  //    static: './dist',
+  //  },
+});
