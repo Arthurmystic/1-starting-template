@@ -18,6 +18,7 @@
     "create-pret-config-file": "node --eval \"require('fs').writeFileSync('.prettierrc','{}\\n')\"",
     "create-pret-ignore": "node --eval \"require('fs').writeFileSync('.prettierignore','# Ignore artifacts:\\nbuild\\ncoverage\\n')\"",
     "pret-format-all": "npx prettier . --write ",
-    "pret-remove-conflict": "npm i -D eslint-config-prettier"
+    "pret-remove-conflict": "npm i -D eslint-config-prettier",
+    "install-date-fns": "npm install date-fns --save"
   }
 }
